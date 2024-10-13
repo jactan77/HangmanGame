@@ -72,7 +72,10 @@ To run the game:
    ```bash
    java Main
    ```
+## Unreleased
 
+### Upcoming Changes
+- **Improved OOP Structure:** Further refactor the code to separate game mechanics and user interaction logic, improving maintainability.
 
 
 ## Future Improvements
