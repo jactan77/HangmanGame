@@ -9,5 +9,16 @@ public class WordCheck {
         }
         return false;
     }
+    public boolean containsDigits(String input) {
+        for (char c : input.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
 
 }
