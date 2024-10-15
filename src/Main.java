@@ -7,7 +7,7 @@ public class Main{
         System.out.println("Write the word");
         String word = sc.nextLine();
         boolean state = wordCheck.containsDigits(word);
-        if(!state){
+        if(state){
         Game game = new Game(word);
         game.Play();
         }else {

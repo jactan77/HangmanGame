@@ -27,6 +27,7 @@ public class Game extends WordCheck {
     public void Play(){
         this.Show();
         do{
+            System.out.println(new String(this.wordArray));
             System.out.println("\tAdd your character");
             this.playerLetters = scanner.next().charAt(0);
             this.state = wordCheck.checkGame(this.maskedArray,this.playerLetters, this.wordArray);
@@ -35,7 +36,6 @@ public class Game extends WordCheck {
                 System.out.println("You've made a mistake, you've made it " + this.mistakes + " times already");
             } else {
                 if((new String(this.wordArray)).contains("_")) {
-                    System.out.println(new String(this.wordArray));
                 } else {
                     System.out.println(new String(this.wordArray));
                     System.out.println("You won!!!!");
