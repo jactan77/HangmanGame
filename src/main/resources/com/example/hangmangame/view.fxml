@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.hangmangame.Controller">
+
+    <center>
+        <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20;">
+
+            <Pane fx:id="gallowsPane" minWidth="150" minHeight="200" style="-fx-background-color: #355E3B; -fx-border-color: #ffffff; -fx-border-width: 2;">
+
+            </Pane>
+
+
+            <HBox fx:id="wordDisplay" alignment="CENTER" spacing="10">
+
+            </HBox>
+        </VBox>
+    </center>
+
+
+    <bottom>
+        <FlowPane fx:id="letterGrid" hgap="8" vgap="8" alignment="CENTER" style="-fx-padding: 10;">
+
+            <Button text="A" styleClass="wooden-button"/>
+            <Button text="B" styleClass="wooden-button"/>
+            <Button text="C" styleClass="wooden-button"/>
+            <Button text="D" styleClass="wooden-button"/>
+            <Button text="E" styleClass="wooden-button"/>
+            <Button text="F" styleClass="wooden-button"/>
+            <Button text="G" styleClass="wooden-button"/>
+            <Button text="H" styleClass="wooden-button"/>
+            <Button text="I" styleClass="wooden-button"/>
+            <Button text="J" styleClass="wooden-button"/>
+            <Button text="K" styleClass="wooden-button"/>
+            <Button text="L" styleClass="wooden-button"/>
+            <Button text="M" styleClass="wooden-button"/>
+            <Button text="N" styleClass="wooden-button"/>
+            <Button text="O" styleClass="wooden-button"/>
+            <Button text="P" styleClass="wooden-button"/>
+            <Button text="Q" styleClass="wooden-button"/>
+            <Button text="R" styleClass="wooden-button"/>
+            <Button text="S" styleClass="wooden-button"/>
+            <Button text="T" styleClass="wooden-button"/>
+            <Button text="U" styleClass="wooden-button"/>
+            <Button text="V" styleClass="wooden-button"/>
+            <Button text="W" styleClass="wooden-button"/>
+            <Button text="X" styleClass="wooden-button"/>
+            <Button text="Y" styleClass="wooden-button"/>
+            <Button text="Z" styleClass="wooden-button"/>
+        </FlowPane>
+    </bottom>
+</BorderPane>
