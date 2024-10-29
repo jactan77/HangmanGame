@@ -19,7 +19,12 @@ public class Controller {
 
     @FXML
     private HBox wordDisplay;
-
+    @FXML
+    private Button resetButton;
+    @FXML
+    private Button exitButton;
+    @FXML
+    private Label mistakesCounter;
     @FXML
     private FlowPane letterGrid;
     private String wordToGuess;
@@ -28,6 +33,8 @@ public class Controller {
     private int mistakes;
     private final AudioClip clickSound = new AudioClip(getClass().getResource("/com/example/hangmangame/sounds/sound.wav").toString());
     public void initialize() {
+        setResetButton();
+        setExitButton();
         promptForWord();
         displayWordPlaceholders();
         setupLetterButtons();
@@ -42,6 +49,16 @@ public class Controller {
         } else {
             Platform.exit();
         }
+    }
+    public void setResetButton(){
+        resetButton.setOnAction(event -> {
+            Main.restart();
+        });
+    }
+    public void setExitButton(){
+        exitButton.setOnAction(event -> {
+            Platform.exit();
+        });
     }
 
 
@@ -103,18 +120,8 @@ public class Controller {
             }
         }
     }
-    public void enableAllLetterButtons() {
-        for(javafx.scene.Node node : letterGrid.getChildren()){
-            if(node instanceof Button){
-                Button button = (Button) node;
-                button.setDisable(false);
-                button.setStyle("");
-                button.setOnAction(null);
 
-            }
-        }
 
-    }
 
 
     private void processGuess(char guessedLetter) {
@@ -137,7 +144,8 @@ public class Controller {
             }
         } else {
 
-            showAlert("Wrong character, Your mistakes: " + (++this.mistakes));
+            mistakesCounter.setText(String.valueOf(++this.mistakes));
+            showAlert("Wrong character, Your mistakes: " + (this.mistakes));
             if(mistakes >= maxMistakes){
                 resetGame("Game Over! You've made too many mistakes.");
             }
@@ -150,4 +158,5 @@ public class Controller {
         }
         return true;
     }
+
 }

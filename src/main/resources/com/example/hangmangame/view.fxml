@@ -6,24 +6,37 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.hangmangame.Controller">
 
+    <!-- Top Navigation with Game Title and Reset Button -->
+    <top>
+        <HBox alignment="CENTER" spacing="20" style="-fx-padding: 10; -fx-background-color: #f4f4f4;">
+            <Label text="Hangman Game" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Region fx:id="spacer" HBox.hgrow="ALWAYS" />
+            <Label text="Mistakes: " style="-fx-font-size: 16px;"/>
+            <Label fx:id="mistakesCounter" text="0" style="-fx-font-size: 16px; -fx-text-fill: red;"/>
+            <Button fx:id="resetButton" text="Reset"  style="-fx-background-color: #808080; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            <Button fx:id="exitButton" text="Exit"  style="-fx-background-color: #ff6666; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- Center Gallows and Word Display -->
     <center>
         <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20;">
-
+            <!-- Gallows Pane (Placeholder for gallows drawing) -->
             <Pane fx:id="gallowsPane" minWidth="150" minHeight="200" style="-fx-background-color: #355E3B; -fx-border-color: #ffffff; -fx-border-width: 2;">
-
+                <!-- Add gallows or hangman parts programmatically -->
             </Pane>
 
-
+            <!-- Word Display (Underscores or guessed letters) -->
             <HBox fx:id="wordDisplay" alignment="CENTER" spacing="10">
-
+                <!-- Placeholder for word letters -->
             </HBox>
         </VBox>
     </center>
 
-
+    <!-- Letter Grid for Guessing Letters -->
     <bottom>
         <FlowPane fx:id="letterGrid" hgap="8" vgap="8" alignment="CENTER" style="-fx-padding: 10;">
-
+            <!-- Alphabet Buttons (A-Z) -->
             <Button text="A" styleClass="wooden-button"/>
             <Button text="B" styleClass="wooden-button"/>
             <Button text="C" styleClass="wooden-button"/>
