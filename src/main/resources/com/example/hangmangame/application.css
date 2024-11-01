@@ -8,16 +8,17 @@
     -fx-background-color: #2E8B57;
     -fx-border-color: #ffffff;
     -fx-border-width: 2;
+
 }
 
-/* Word Display Style */
+
 #wordDisplay Label {
     -fx-font-family: "Courier New";
     -fx-font-size: 24px;
     -fx-text-fill: #ffffff;
 }
 
-/* Wooden Button Style */
+
 .wooden-button {
     -fx-background-color: #8B4513;
     -fx-border-color: #5C4033;
@@ -28,6 +29,7 @@
     -fx-font-weight: bold;
     -fx-padding: 10 15;
 }
+
 
 .wooden-button:hover {
     -fx-background-color: #A0522D;

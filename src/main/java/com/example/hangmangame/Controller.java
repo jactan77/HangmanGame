@@ -1,5 +1,6 @@
 package com.example.hangmangame;
 
+import com.example.hangmangame.utils.HangmanAnimation;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -10,13 +11,18 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
 import javafx.application.Platform;
-
-
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import java.util.Arrays;
 import java.util.Optional;
 
 public class Controller {
+    private HangmanAnimation hangmanAnimation;
+    @FXML
+    private Pane animationPane;
 
+    @FXML
+    private ImageView firstImage;
     @FXML
     private HBox wordDisplay;
     @FXML
@@ -25,6 +31,8 @@ public class Controller {
     private Button exitButton;
     @FXML
     private Label mistakesCounter;
+
+
     @FXML
     private FlowPane letterGrid;
     private String wordToGuess;
@@ -38,6 +46,7 @@ public class Controller {
         promptForWord();
         displayWordPlaceholders();
         setupLetterButtons();
+        hangmanAnimation = new HangmanAnimation(animationPane);
     }
 
     private void resetGame(String message) {
@@ -52,11 +61,13 @@ public class Controller {
     }
     public void setResetButton(){
         resetButton.setOnAction(event -> {
+            clickSound.play();
             Main.restart();
         });
     }
     public void setExitButton(){
         exitButton.setOnAction(event -> {
+            clickSound.play();
             Platform.exit();
         });
     }
@@ -111,7 +122,7 @@ public class Controller {
             if (node instanceof Button) {
                 Button letterButton = (Button) node;
                 letterButton.setOnAction(event -> {
-                    clickSound.play();
+
                     String letter = letterButton.getText();
                     processGuess(letter.charAt(0));
                     letterButton.setDisable(true);
@@ -138,14 +149,15 @@ public class Controller {
         }
 
         if (correctGuess) {
-
+            clickSound.play();
             if (isWordFullyGuessed()) {
                 resetGame("Congratulations, you won the game.");
             }
         } else {
 
             mistakesCounter.setText(String.valueOf(++this.mistakes));
-            showAlert("Wrong character, Your mistakes: " + (this.mistakes));
+            if(!hangmanAnimation.isComplete())
+                hangmanAnimation.nextStep();
             if(mistakes >= maxMistakes){
                 resetGame("Game Over! You've made too many mistakes.");
             }

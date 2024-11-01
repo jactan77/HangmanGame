@@ -18,7 +18,7 @@ public class Main extends Application {
 
     private void loadMainScene() throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
+        Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
 
 
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
