@@ -13,27 +13,36 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
-        loadMainScene();
+        loadMenuScene();
     }
-
-    private void loadMainScene() throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
-
-
-        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
+    private void loadMenuScene() throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("menuView.fxml"));
+        Scene menuScene = new Scene(fxmlLoader.load(), 1600, 900);
+        menuScene.getStylesheets().add(Main.class.getResource("menuStyles.css").toExternalForm());
         primaryStage.setTitle("Hangman Game");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(menuScene);
         primaryStage.show();
     }
 
-    public static void restart() {
+
+    public static void switchToGameScene() {
         Platform.runLater(() -> {
             try {
-
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view.fxml"));
+                Scene gameScene = new Scene(fxmlLoader.load(), 1600, 900);
+                gameScene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
+                primaryStage.setScene(gameScene);
+                primaryStage.setTitle("Hangman Game - Play");
+                primaryStage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+    public static void switchToMenuScene() {
+        Platform.runLater(() -> {
+            try {
                 primaryStage.close();
-
                 Main newApp = new Main();
                 Stage newStage = new Stage();
                 newApp.start(newStage);

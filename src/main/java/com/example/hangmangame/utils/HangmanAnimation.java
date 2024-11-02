@@ -1,17 +1,15 @@
 package com.example.hangmangame.utils;
-import javafx.animation.FadeTransition;
+import com.example.hangmangame.utils.UISoundEffects;
 import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
-import javafx.scene.media.AudioClip;
 
 public class HangmanAnimation {
-    private final AudioClip animationSound = new AudioClip(getClass().getResource("/com/example/hangmangame/sounds/chalkSound.wav").toString());
-    private Pane pane;
+    private final UISoundEffects soundEffects = new UISoundEffects();
+    private final Pane pane;
     private int currentStep = 0;
 
 
@@ -41,6 +39,7 @@ public class HangmanAnimation {
         rightArm = new Line(300, 250, 370, 290);
         leftLeg = new Line(300, 350, 250, 450);
         rightLeg = new Line(300, 350, 350, 450);
+
     }
 
     public void nextStep() {
@@ -66,7 +65,7 @@ public class HangmanAnimation {
         scale.setToX(1.0);
         scale.setToY(1.0);
         scale.play();
-        animationSound.play();
+        soundEffects.animationSound();
     }
 
     private void addWithScale(Circle part) {
@@ -77,7 +76,7 @@ public class HangmanAnimation {
         scale.setToX(1.0);
         scale.setToY(1.0);
         scale.play();
-        animationSound.play();
+        soundEffects.animationSound();
     }
 
     public boolean isComplete() {

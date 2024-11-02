@@ -13,6 +13,7 @@
             <Label text="Mistakes: " style="-fx-font-size: 16px;"/>
             <Label fx:id="mistakesCounter" text="0" style="-fx-font-size: 16px; -fx-text-fill: red;"/>
             <Button fx:id="resetButton" text="Reset" style="-fx-background-color: #808080; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            <Button fx:id="menuButton" text="Menu" style="-fx-background-color: #003d5c; -fx-text-fill: white; -fx-font-weight: bold;"/>
             <Button fx:id="exitButton" text="Exit" style="-fx-background-color: #ff6666; -fx-text-fill: white; -fx-font-weight: bold;"/>
         </HBox>
     </top>

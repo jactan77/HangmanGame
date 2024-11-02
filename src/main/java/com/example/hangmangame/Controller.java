@@ -1,12 +1,12 @@
 package com.example.hangmangame;
 
 import com.example.hangmangame.utils.HangmanAnimation;
+import com.example.hangmangame.utils.UISoundEffects;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.media.AudioClip;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
@@ -17,7 +17,9 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public class Controller {
+
     private HangmanAnimation hangmanAnimation;
+    private final UISoundEffects soundEffects = new UISoundEffects();
     @FXML
     private Pane animationPane;
 
@@ -30,6 +32,8 @@ public class Controller {
     @FXML
     private Button exitButton;
     @FXML
+    private Button menuButton;
+    @FXML
     private Label mistakesCounter;
 
 
@@ -39,14 +43,14 @@ public class Controller {
     private char[] guessedWord;
     private final int maxMistakes = 10;
     private int mistakes;
-    private final AudioClip clickSound = new AudioClip(getClass().getResource("/com/example/hangmangame/sounds/sound.wav").toString());
     public void initialize() {
-        setResetButton();
-        setExitButton();
+        resetButton.setOnAction(event -> Main.switchToGameScene());
+        exitButton.setOnAction(event -> {soundEffects.clickEffect();Platform.exit();});
+        menuButton.setOnAction(event-> Main.switchToMenuScene());
         promptForWord();
         displayWordPlaceholders();
         setupLetterButtons();
-        hangmanAnimation = new HangmanAnimation(animationPane);
+        this.hangmanAnimation = new HangmanAnimation(animationPane);
     }
 
     private void resetGame(String message) {
@@ -54,25 +58,11 @@ public class Controller {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.YES) {
-            Main.restart();
+            Main.switchToGameScene();
         } else {
-            Platform.exit();
+            Main.switchToMenuScene();
         }
     }
-    public void setResetButton(){
-        resetButton.setOnAction(event -> {
-            clickSound.play();
-            Main.restart();
-        });
-    }
-    public void setExitButton(){
-        exitButton.setOnAction(event -> {
-            clickSound.play();
-            Platform.exit();
-        });
-    }
-
-
     public boolean containsDigits(String input) {
         for(int i = 0; i < input.length(); i++){
             char a = input.charAt(i);
@@ -149,7 +139,7 @@ public class Controller {
         }
 
         if (correctGuess) {
-            clickSound.play();
+            soundEffects.clickEffect();
             if (isWordFullyGuessed()) {
                 resetGame("Congratulations, you won the game.");
             }
