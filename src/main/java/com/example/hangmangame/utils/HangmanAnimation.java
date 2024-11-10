@@ -88,5 +88,3 @@ public class HangmanAnimation {
         currentStep = 0;
     }
 }
-
-

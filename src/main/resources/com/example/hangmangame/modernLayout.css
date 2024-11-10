@@ -1,0 +1,42 @@
+/* Modern Layout Styles */
+
+/* Word Display Area */
+#wordDisplay {
+    -fx-font-family: 'Roboto', sans-serif;
+    -fx-font-size: 24px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #2B2B2B;
+    -fx-padding: 10px;
+    -fx-border-radius: 8px;
+}
+
+/* Letter Buttons */
+.letter-button {
+    -fx-background-color: #444444;
+    -fx-text-fill: #eeeeee;
+    -fx-font-size: 18px;
+    -fx-padding: 10px 15px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #666666;
+}
+
+.letter-button:hover {
+    -fx-background-color: #555555;
+}
+
+/* Hangman Graphic Area */
+#hangmanGraphic {
+    -fx-background-color: #3A3A3A;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+}
+
+/* Score Display */
+#scoreDisplay {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: #F4F4F4;
+    -fx-font-size: 20px;
+    -fx-padding: 10px;
+    -fx-border-radius: 8px;
+}
