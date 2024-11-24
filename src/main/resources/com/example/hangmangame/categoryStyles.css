@@ -1,0 +1,47 @@
+/* Root style for background and font */
+.root {
+    -fx-background-color: #2c3e50;
+    -fx-font-family: 'Arial', sans-serif;
+}
+
+/* VBox style for alignment and padding */
+#buttonContainer {
+    -fx-alignment: center;
+    -fx-padding: 20;
+}
+
+/* General button style */
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 10 20;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-pref-width: 200px; /* Set a uniform button width */
+}
+
+/* Hover and specific button color styles */
+.button:hover {
+    -fx-background-color: #2980b9;
+}
+#sportButton { -fx-background-color: #1abc9c; }
+#sportButton:hover { -fx-background-color: #16a085; }
+#medicineButton { -fx-background-color: #f39c12; }
+#medicineButton:hover { -fx-background-color: #e67e22; }
+#technologyButton { -fx-background-color: #8e44ad; }
+#technologyButton:hover { -fx-background-color: #71368a; }
+#healthButton { -fx-background-color: #27ae60; }
+#healthButton:hover { -fx-background-color: #2ecc71; }
+#scienceButton { -fx-background-color: #e74c3c; }
+#scienceButton:hover { -fx-background-color: #c0392b; }
+#socialButton { -fx-background-color: #d35400; }
+#socialButton:hover { -fx-background-color: #e67e22; }
+#environmentButton { -fx-background-color: #3498db; }
+#environmentButton:hover { -fx-background-color: #2980b9; }
+#spaceButton { -fx-background-color: #34495e; }
+#spaceButton:hover { -fx-background-color: #2c3e50; }
+#artsButton { -fx-background-color: #9b59b6; }
+#artsButton:hover { -fx-background-color: #8e44ad; }

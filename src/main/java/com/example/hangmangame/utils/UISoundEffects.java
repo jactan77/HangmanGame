@@ -6,9 +6,7 @@ public class UISoundEffects {
     private final AudioClip clickSound = new AudioClip(getClass().getResource("/com/example/hangmangame/sounds/sound.wav").toString());
 
     public void clickEffect() {
-
-        CompletableFuture.runAsync(clickSound::play);
-
+        clickSound.play();
     }
     public void animationSound() {
         CompletableFuture.runAsync(animationSound::play);

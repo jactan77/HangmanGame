@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.hangmangame.CategoryViewController"
+            prefHeight="400.0" prefWidth="600.0"
+            styleClass="main-container"
+            stylesheets="@categoryStyles.css" style="-fx-padding: 20;">
+
+
+    <VBox alignment="CENTER" spacing="15" fx:id="buttonContainer"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
+<!--
+        <Button fx:id="sportButton" text="Sport" />
+        <Button fx:id="medicineButton" text="Medicine"/>
+        <Button fx:id="technologyButton" text="Technology"/>
+        <Button fx:id="healthButton" text="Health"/>
+        <Button fx:id="scienceButton" text="Science"/>
+        <Button fx:id="socialButton" text="Social"/>
+        <Button fx:id="environmentButton" text="Environment"/>
+        <Button fx:id="spaceButton" text="Space"/>
+        <Button fx:id="artsButton" text="Arts"/>
+        -->
+        <!-- Move 'Add your Set' button to the last position -->
+        <Button fx:id="userSetsButton" text="Your Sets"/>
+    </VBox>
+
+</AnchorPane>

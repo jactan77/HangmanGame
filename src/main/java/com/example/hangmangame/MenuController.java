@@ -16,8 +16,8 @@ public class MenuController {
     private Button exitButton;
 
     public void initialize() {
-        startButton.setOnAction(event -> {soundEffects.clickEffect();Main.switchToGameScene();});
+        startButton.setOnAction(event -> {soundEffects.clickEffect();Main.loadCategoryScene();});
         settingsButton.setOnAction(event -> {soundEffects.clickEffect();}); // in process...
         exitButton.setOnAction(event -> {soundEffects.clickEffect();Platform.exit();System.exit(0);});
     }
-    }
+}

@@ -1,0 +1,132 @@
+/* categoryStyles.css */
+.root {
+    -fx-background-color: #34495e;
+}
+
+.main-container {
+    -fx-background-color: #34495e;
+}
+
+.header-text {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.nav-buttons {
+    -fx-padding: 10px;
+}
+
+.action-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-transition: transform 0.3s ease-out, -fx-background-color 0.3s ease-out;
+}
+
+.nav-button {
+    -fx-background-color: #95a5a6;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-transition: transform 0.3s ease-out, -fx-background-color 0.3s ease-out;
+}
+
+.categories-scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+    -fx-border-color: transparent;
+}
+
+.categories-scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.categories-container {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+}
+
+.category-button-container {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+    -fx-padding: 5;
+}
+
+.delete-button {
+    -fx-background-color: #e74c3c;
+    -fx-background-radius: 15;
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+    -fx-max-width: 24px;
+    -fx-max-height: 24px;
+    -fx-padding: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-opacity: 0;
+    -fx-transition: opacity 0.3s ease-out, -fx-background-color 0.3s ease-out;
+}
+
+.delete-button:hover {
+    -fx-background-color: #c0392b;
+    -fx-cursor: hand;
+}
+
+.category-button-container:hover .delete-button {
+    -fx-opacity: 1;
+}
+
+.button {
+    -fx-transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    -fx-effect 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    -fx-background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button:hover {
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 4);
+}
+
+.button:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0, 0, 2);
+}
+
+/* Scrollbar Styling */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #95a5a6;
+    -fx-background-radius: 5em;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #7f8c8d;
+}
+
+/* Remove all borders */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: transparent;
+}

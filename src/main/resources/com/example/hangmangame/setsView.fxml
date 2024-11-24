@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hangmangame.SetsController"
+            prefHeight="600.0" prefWidth="800.0"
+            styleClass="root"
+            stylesheets="@setsStyles.css">
+
+    <VBox alignment="CENTER" spacing="30" styleClass="main-container"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
+
+        <!-- Header Section -->
+        <Label text="Word Categories" styleClass="header-text"/>
+
+        <!-- Navigation Buttons -->
+        <HBox alignment="CENTER" spacing="20" styleClass="nav-buttons">
+            <Button fx:id="newSetButton" text="Add New Set" styleClass="action-button"/>
+            <Button fx:id="backButton" text="Back" styleClass="nav-button"/>
+            <Button fx:id="exitButton" text="Exit" styleClass="nav-button"/>
+        </HBox>
+
+        <!-- Categories Container -->
+        <ScrollPane fitToWidth="true" styleClass="categories-scroll-pane"
+                    VBox.vgrow="ALWAYS">
+            <VBox fx:id="userCategoriesContainer" spacing="15"
+                  alignment="TOP_CENTER" styleClass="categories-container">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+            </VBox>
+        </ScrollPane>
+    </VBox>
+</AnchorPane>

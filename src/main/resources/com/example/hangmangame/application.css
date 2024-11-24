@@ -1,38 +1,38 @@
 
 .root {
-    -fx-background-color: #2E8B57;
+    -fx-background-color: #34495e;
+    -fx-transition: background-color 0.3s ease;
 }
-
 
 #gallowsPane {
-    -fx-background-color: #2E8B57;
-    -fx-border-color: #ffffff;
+    -fx-background-color: #34495e;
+    -fx-border-color: #ecf0f1;
     -fx-border-width: 2;
-
+    -fx-transition: border-color 0.3s ease;
 }
-
 
 #wordDisplay Label {
-    -fx-font-family: "Courier New";
+    -fx-font-family: 'Courier New';
     -fx-font-size: 24px;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #ecf0f1;
 }
 
-
 .wooden-button {
-    -fx-background-color: #8B4513;
+    -fx-background-color: #8e44ad;
     -fx-border-color: #5C4033;
     -fx-border-width: 2;
     -fx-border-radius: 5;
     -fx-text-fill: #F4A460;
-    -fx-font-family: "Arial";
+    -fx-font-family: 'Arial';
     -fx-font-weight: bold;
     -fx-padding: 10 15;
+    -fx-transition: background-color 0.3s ease, border-color 0.3s ease, text-fill 0.3s ease;
 }
 
-
 .wooden-button:hover {
-    -fx-background-color: #A0522D;
+    -fx-background-color: #9b59b6;
+    -fx-border-color: #7e5f5f;
+    -fx-text-fill: #e0c0c0;
 }
 
 .wooden-button:disabled {
