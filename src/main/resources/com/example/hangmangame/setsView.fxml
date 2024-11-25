@@ -22,7 +22,7 @@
         <HBox alignment="CENTER" spacing="20" styleClass="nav-buttons">
             <Button fx:id="newSetButton" text="Add New Set" styleClass="action-button"/>
             <Button fx:id="backButton" text="Back" styleClass="nav-button"/>
-            <Button fx:id="exitButton" text="Exit" styleClass="nav-button"/>
+            <Button fx:id="exitButton" style="-fx-background-color: red;" text="Exit" styleClass="nav-button"/>
         </HBox>
 
         <!-- Categories Container -->

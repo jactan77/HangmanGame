@@ -1,8 +1,10 @@
 package com.example.hangmangame;
 
+import com.example.hangmangame.utils.Transition;
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.application.Platform;
@@ -12,7 +14,7 @@ public class Main extends Application {
     private static Stage primaryStage;
     private final Db db = new Db();
     private static int selectedCategory;
-    private static String selectedStyle;
+
     public static int getSelectedCategory() {
         return selectedCategory;
     }
@@ -30,92 +32,93 @@ public class Main extends Application {
         loadMenuScene();
         db.getConnection();
 
-        primaryStage.widthProperty().addListener((observable, oldValue, newValue) -> {resizeCurrentScene();});
-        primaryStage.heightProperty().addListener((observable, oldValue, newValue) -> {resizeCurrentScene();});
+        primaryStage.widthProperty().addListener((observable, oldValue, newValue) -> {
+            resizeCurrentScene();
+        });
+        primaryStage.heightProperty().addListener((observable, oldValue, newValue) -> {
+            resizeCurrentScene();
+        });
     }
 
-    private void loadMenuScene() throws Exception{
+    private void loadMenuScene() throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("menuView.fxml"));
-        Scene menuScene = new Scene(fxmlLoader.load(), primaryStage.getWidth(),  primaryStage.getHeight());
+        Scene menuScene = new Scene(fxmlLoader.load(), primaryStage.getWidth(), primaryStage.getHeight());
         menuScene.getStylesheets().add(Main.class.getResource("menuStyles.css").toExternalForm());
         Platform.runLater(() -> {
             primaryStage.setScene(menuScene);
             primaryStage.show();
         });
     }
-    public static void loadCategoryScene(){
-        Platform.runLater(() -> {
-        try{
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("categoryView.fxml"));
-            Scene categoryScene = new Scene(fxmlLoader.load(), primaryStage.getWidth(),  primaryStage.getHeight());
-            primaryStage.setScene(categoryScene);
-            primaryStage.show();}
-            catch(Exception e){  e.printStackTrace();}
-    });
 
+    public static void loadCategoryScene() {
+        applyFadeTransitionAndLoad("categoryView.fxml");
     }
-    public static void loadUserCategoryScene(){
-        Platform.runLater(() -> {
-            try{
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("setsView.fxml"));
-                Scene categoryScene = new Scene(fxmlLoader.load(), primaryStage.getWidth(),  primaryStage.getHeight());
-                primaryStage.setScene(categoryScene);
-                primaryStage.show();}
-            catch(Exception e){  e.printStackTrace();}
-        });
 
+    public static void loadUserCategoryScene() {
+        applyFadeTransitionAndLoad("setsView.fxml");
     }
 
     public static void switchToGameScene() {
-        Platform.runLater(() -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view.fxml"));
-                Scene gameScene = new Scene(fxmlLoader.load(), primaryStage.getWidth(),  primaryStage.getHeight());
-                primaryStage.setScene(gameScene);
-                primaryStage.setTitle("Hangman Game - Play");
-                primaryStage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        applyFadeTransitionAndLoad("view.fxml");
     }
 
     public static void switchToMenuScene() {
-        Platform.runLater(() -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("menuView.fxml"));
-                Scene menuScene = new Scene(fxmlLoader.load(), primaryStage.getWidth(),  primaryStage.getHeight());
-                menuScene.getStylesheets().add(Main.class.getResource("menuStyles.css").toExternalForm());
-                primaryStage.setScene(menuScene);
-                primaryStage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        applyFadeTransitionAndLoad("menuView.fxml");
     }
+
     public static void switchToFormsScene() {
+        applyFadeTransitionAndLoad("formsView.fxml");
+    }
+
+    private static void applyFadeTransitionAndLoad(String fxmlFile) {
         Platform.runLater(() -> {
-            try{
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("formsView.fxml"));
-                Scene formScene = new Scene(fxmlLoader.load(), primaryStage.getWidth(),  primaryStage.getHeight());
-                primaryStage.setScene(formScene);
-                primaryStage.show();
-            }
-            catch (Exception e){
-                e.printStackTrace();
+            Scene currentScene = primaryStage.getScene();
+            if (currentScene != null) {
+                Parent currentRoot = currentScene.getRoot();
+                FadeTransition fadeOut = Transition.fadeOut(currentRoot, e -> {
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlFile));
+                        Parent newRoot = fxmlLoader.load();
+                        Scene newScene = new Scene(newRoot, primaryStage.getWidth(), primaryStage.getHeight());
+
+                        if (fxmlFile.equals("menuView.fxml")) {
+                            newScene.getStylesheets().add(Main.class.getResource("menuStyles.css").toExternalForm());
+                        }
+
+                        // Apply a fade-in effect after loading the new scene
+                        primaryStage.setScene(newScene);
+                        Transition.fadeIn(newRoot).play();
+                        primaryStage.show();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                fadeOut.play();
+            } else {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlFile));
+                    Parent newRoot = fxmlLoader.load();
+                    Scene newScene = new Scene(newRoot, primaryStage.getWidth(), primaryStage.getHeight());
+
+                    if (fxmlFile.equals("menuView.fxml")) {
+                        newScene.getStylesheets().add(Main.class.getResource("menuStyles.css").toExternalForm());
+                    }
+
+                    primaryStage.setScene(newScene);
+                    primaryStage.show();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
 
-
-
-    public static void resizeCurrentScene(){
+    public static void resizeCurrentScene() {
         Scene currentScene = primaryStage.getScene();
-        if(currentScene != null){
+        if (currentScene != null) {
             currentScene.setRoot(currentScene.getRoot());
         }
     }
-
 
     public static void main(String[] args) {
         launch();

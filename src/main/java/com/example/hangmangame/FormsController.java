@@ -1,6 +1,7 @@
 package com.example.hangmangame;
 
 import com.example.hangmangame.utils.RandomColors;
+import com.example.hangmangame.utils.UISoundEffects;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -22,6 +23,7 @@ public class FormsController {
     @FXML
     private TextField categoryName;
     private  final Db  db = new Db();
+    private  final UISoundEffects soundEffects = new UISoundEffects();
     private int currentCard = 0;
     private final List<HBox> cards = new ArrayList<>();
 
@@ -29,9 +31,15 @@ public class FormsController {
     public void initialize() {
 
         createNewCard();
-        addWordButton.setOnAction(event -> createNewCard());
-        backButton.setOnAction(event -> {Main.loadUserCategoryScene();});
+        addWordButton.setOnAction(event -> {
+            soundEffects.clickEffect();
+            createNewCard();});
+        backButton.setOnAction(event -> {
+            soundEffects.clickEffect();
+            Main.loadUserCategoryScene()
+            ;});
         createButton.setOnAction(event -> {
+            soundEffects.clickEffect();
             addWord();
 
         });
@@ -145,6 +153,10 @@ public class FormsController {
 
             if (word.isEmpty()) {
                 showAlert(Alert.AlertType.ERROR, "Word cannot be empty. Please provide input.");
+                return false;
+            }
+            if (word.matches(".*\\d.*")) {
+                showAlert(Alert.AlertType.ERROR, "Word contains digits. Please provide valid input.");
                 return false;
             }
 
