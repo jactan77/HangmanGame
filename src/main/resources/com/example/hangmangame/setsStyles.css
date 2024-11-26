@@ -74,13 +74,33 @@
     -fx-opacity: 0;
     -fx-transition: opacity 0.3s ease-out, -fx-background-color 0.3s ease-out;
 }
+.edit-button {
+    -fx-background-color: #18a0fd;
+    -fx-background-radius: 15;
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+    -fx-max-width: 24px;
+    -fx-max-height: 24px;
+    -fx-padding: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-opacity: 0;
+    -fx-transition: opacity 0.3s ease-out, -fx-background-color 0.3s ease-out;
+}
+
+.edit-button:hover{
+    -fx-background-color: #203fb1;
+    -fx-cursor: hand;
+}
 
 .delete-button:hover {
     -fx-background-color: #c0392b;
     -fx-cursor: hand;
 }
 
-.category-button-container:hover .delete-button {
+.category-button-container:hover .delete-button,
+.category-button-container:hover .edit-button {
     -fx-opacity: 1;
 }
 

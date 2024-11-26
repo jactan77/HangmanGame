@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hangmangame.EditSetsController"
+            prefHeight="700.0" prefWidth="900.0"
+            styleClass="root"
+            stylesheets="@forms-styles.css">
+
+    <VBox spacing="20" styleClass="main-container"
+          AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20"
+          AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20">
+
+        <!-- Header Section -->
+        <HBox alignment="CENTER" styleClass="header-container">
+            <Label text="Create New Category Set" styleClass="header-text"/>
+        </HBox>
+
+        <!-- Category Input Section -->
+        <VBox spacing="10" styleClass="category-input-section">
+            <Label text="Category Name" styleClass="label-text"/>
+            <TextField fx:id="categoryName"
+                       promptText="Enter category name"
+                       styleClass="custom-text-field"/>
+        </VBox>
+
+        <!-- Cards Container with ScrollPane -->
+        <ScrollPane fitToWidth="true"
+                    VBox.vgrow="ALWAYS"
+                    styleClass="custom-scroll-pane">
+            <VBox fx:id="cardContainer"
+                  spacing="15"
+                  styleClass="cards-container">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+            </VBox>
+        </ScrollPane>
+
+        <!-- Action Buttons Section -->
+        <VBox spacing="15" alignment="CENTER">
+            <!-- Add Word Button -->
+            <Button fx:id="addWordButton"
+                    styleClass="add-button"
+                    text="+ Add New Word"
+                    maxWidth="200"/>
+
+            <!-- Bottom Action Buttons -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="backButton"
+                        styleClass="secondary-button"
+                        text="Back"/>
+                <Button fx:id="createButton"
+                        styleClass="primary-button"
+                        text="Create Category"/>
+            </HBox>
+        </VBox>
+    </VBox>
+</AnchorPane>

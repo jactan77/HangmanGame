@@ -45,7 +45,7 @@ public class FormsController {
         });
     }
 
-    private void createNewCard() {
+    public void createNewCard() {
         currentCard++;
 
 
@@ -93,7 +93,7 @@ public class FormsController {
         cardContainer.getChildren().add(cardBox);
         cards.add(cardBox);
     }
-    private void renumberCards() {
+    public void renumberCards() {
         for (int i = 0; i < cards.size(); i++) {
             HBox card = cards.get(i);
             Label numberLabel = (Label) card.getChildren().get(0);

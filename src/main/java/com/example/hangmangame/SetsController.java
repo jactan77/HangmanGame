@@ -81,17 +81,20 @@ public class SetsController {
 
     private void createCategoryButton(int id, String categoryName, String colorCode) {
         Button categoryButton = new Button(categoryName);
-        Button deleteButton = new Button("×");
+        Button deleteButton = new Button("");
+        Button editButton = new Button("Edit");
         HBox container = new HBox();
 
         styleContainer(container);
         styleButton(categoryButton, colorCode);
         styleDeleteButton(deleteButton);
-
+        stylEditButton(editButton);
         setupButtonAction(categoryButton, id, categoryName);
         setupDeleteAction(deleteButton, id, container);
+        setupEditAction(editButton, id, categoryName);
 
-        container.getChildren().addAll(categoryButton, deleteButton);
+
+        container.getChildren().addAll(categoryButton, deleteButton,editButton);
         userCategoriesContainer.getChildren().add(container);
     }
 
@@ -126,7 +129,9 @@ public class SetsController {
     private void styleDeleteButton(Button deleteButton) {
         deleteButton.getStyleClass().add("delete-button");
     }
-
+    private void stylEditButton(Button editButton){
+        editButton.getStyleClass().add("edit-button");
+    }
     private void setupButtonAction(Button button, int id, String categoryName) {
         button.setOnAction(event -> {
             soundEffects.clickEffect();
@@ -140,6 +145,14 @@ public class SetsController {
         deleteButton.setOnAction(event -> {
             soundEffects.clickEffect();
             deleteCategory(id, container);
+        });
+    }
+
+    private void setupEditAction(Button editButton, int id, String categoryName) {
+        editButton.setOnAction(event -> {
+            soundEffects.clickEffect();
+            System.out.println("Edit category: " + categoryName);
+            // Implement editing logic here
         });
     }
 

@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
 
 public class Db {
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(Db.class);
@@ -83,7 +84,7 @@ public class Db {
     }
 
     public boolean deleteWord(String word, String category) {
-        String sql = "DELETE FROM UserWords WHERE word = ? AND category = ?";
+        String sql = "DELETE FROM Words WHERE word = ? AND Category = ?";
         try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
             pstmt.setString(1, word);
             pstmt.setString(2, category);
@@ -121,6 +122,21 @@ public class Db {
                 logger.log(Level.SEVERE, "Error adding category: {0}", e.getMessage());
             }
 
+    }
+    public ArrayList<String> getWords(int id){
+        ArrayList<String> words = new ArrayList<>();
+        String selectWordsSQL = "SELECT word FROM Words WHERE id = ?";
+        try(PreparedStatement pstmt = getConnection().prepareStatement(selectWordsSQL)){
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                words.add(rs.getString("word"));
+            }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Error retrieving words: {0}", e.getMessage());
+
+        }
+        return words;
     }
     public int getCategoryId(String category) {
         String sql = "SELECT Id FROM Categories WHERE name_category = ?";
