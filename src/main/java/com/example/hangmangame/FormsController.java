@@ -15,17 +15,17 @@ public class FormsController {
     @FXML
     public Button backButton;
     @FXML
-    private Button addWordButton;
+    public Button addWordButton;
     @FXML
-    private VBox cardContainer; // Add this to your FXML
+    public VBox cardContainer; // Add this to your FXML
     @FXML
-    private Button createButton;
+    public Button createButton;
     @FXML
-    private TextField categoryName;
-    private  final Db  db = new Db();
-    private  final UISoundEffects soundEffects = new UISoundEffects();
-    private int currentCard = 0;
-    private final List<HBox> cards = new ArrayList<>();
+    public TextField categoryName;
+    public   final Db  db = new Db();
+    public  final UISoundEffects soundEffects = new UISoundEffects();
+    public int currentCard = 0;
+    public final List<HBox> cards = new ArrayList<>();
 
 
     public void initialize() {
@@ -44,6 +44,7 @@ public class FormsController {
 
         });
     }
+
 
     public void createNewCard() {
         currentCard++;
@@ -105,7 +106,7 @@ public class FormsController {
         }
         currentCard = cards.size();
     }
-    private void addWord() {
+    public void addWord() {
         String category = categoryName.getText().trim();
 
         if (cards.isEmpty()) {
@@ -143,7 +144,7 @@ public class FormsController {
         showAlert(Alert.AlertType.INFORMATION, "Category and words added successfully!");
         Main.loadUserCategoryScene();
     }
-    private boolean isValidWord() {
+    public boolean isValidWord() {
         for (int i = 0; i < cards.size(); i++) {
             HBox card = cards.get(i);
             VBox textFieldBox = (VBox) card.getChildren().get(1);
@@ -177,7 +178,7 @@ public class FormsController {
     }
 
 
-    private void showAlert(Alert.AlertType alertType, String message) {
+    public void showAlert(Alert.AlertType alertType, String message) {
         Alert alert = new Alert(alertType, message, ButtonType.OK);
         alert.showAndWait();
     }

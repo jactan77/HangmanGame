@@ -17,7 +17,7 @@
 
         <!-- Header Section -->
         <HBox alignment="CENTER" styleClass="header-container">
-            <Label text="Create New Category Set" styleClass="header-text"/>
+            <Label text="Edit Category Set" styleClass="header-text"/>
         </HBox>
 
         <!-- Category Input Section -->

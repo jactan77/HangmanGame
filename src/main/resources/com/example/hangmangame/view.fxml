@@ -13,8 +13,8 @@
             <Label text="Mistakes: " style="-fx-font-size: 16px;"/>
             <Label fx:id="mistakesCounter" text="0" style="-fx-font-size: 16px; -fx-text-fill: red;"/>
             <Button fx:id="resetButton" text="Reset" styleClass="letter-button"/>
-            <Button fx:id="menuButton" text="Menu" styleClass="letter-button"/>
-            <Button fx:id="exitButton" text="Exit" styleClass="letter-button"/>
+            <Button fx:id="menuButton" text="Menu" styleClass="letter-button" style="-fx-background-color: #3737fd"/>
+            <Button fx:id="exitButton" text="Exit" styleClass="letter-button" style="-fx-background-color: red"/>
         </HBox>
     </top>
 

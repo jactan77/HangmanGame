@@ -151,8 +151,9 @@ public class SetsController {
     private void setupEditAction(Button editButton, int id, String categoryName) {
         editButton.setOnAction(event -> {
             soundEffects.clickEffect();
-            System.out.println("Edit category: " + categoryName);
-            // Implement editing logic here
+            Main.setSelectedCategory(id);
+            Main.switchToEditSettingsScene();
+
         });
     }
 

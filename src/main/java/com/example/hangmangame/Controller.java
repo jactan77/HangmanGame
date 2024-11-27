@@ -68,7 +68,7 @@ public class Controller {
                         Arrays.fill(guessedWord, '_');
                         Platform.runLater(this::displayWordPlaceholders);
                     } else {
-                        showAlert("No word found in the specified category.");
+                        showAlert();
                         Main.switchToMenuScene();
                     }
                 });
@@ -103,8 +103,8 @@ public class Controller {
         }
     }
 
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.OK);
+    private void showAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR, "No word found in the specified category.", ButtonType.OK);
         alert.showAndWait();
     }
 
@@ -116,6 +116,7 @@ public class Controller {
                     processGuess(letter.charAt(0));
                     letterButton.setDisable(true);
                 });
+
             }
         }
     }

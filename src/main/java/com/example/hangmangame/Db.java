@@ -83,16 +83,14 @@ public class Db {
         }
     }
 
-    public boolean deleteWord(String word, String category) {
+    public void deleteWord(String word, int category) {
         String sql = "DELETE FROM Words WHERE word = ? AND Category = ?";
         try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
             pstmt.setString(1, word);
-            pstmt.setString(2, category);
+            pstmt.setInt(2, category);
             int affectedRows = pstmt.executeUpdate();
-            return affectedRows > 0;
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error deleting word: {0}", e.getMessage());
-            return false;
         }
     }
 
@@ -125,7 +123,7 @@ public class Db {
     }
     public ArrayList<String> getWords(int id){
         ArrayList<String> words = new ArrayList<>();
-        String selectWordsSQL = "SELECT word FROM Words WHERE id = ?";
+        String selectWordsSQL = "SELECT word FROM Words WHERE Category = ?";
         try(PreparedStatement pstmt = getConnection().prepareStatement(selectWordsSQL)){
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
@@ -136,6 +134,8 @@ public class Db {
             logger.log(Level.SEVERE, "Error retrieving words: {0}", e.getMessage());
 
         }
+        System.out.println("Is work");
+
         return words;
     }
     public int getCategoryId(String category) {
@@ -150,6 +150,20 @@ public class Db {
             logger.log(Level.SEVERE, "Error getting category id: {0}", e.getMessage());
         }
         return -1;
+    }
+    public String getCategoryName(int id) {
+        String categoryName = null;
+        String sql = "SELECT name_category FROM Categories WHERE Id = ?";
+        try(PreparedStatement pstmt = getConnection().prepareStatement(sql)){
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                categoryName =  rs.getString("name_category");
+            }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Error getting category name: {0}", e.getMessage());
+        }
+        return categoryName;
     }
 
 }

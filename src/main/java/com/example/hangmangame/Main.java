@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.application.Platform;
 
+import java.util.Objects;
+
 public class Main extends Application {
 
     private static Stage primaryStage;
@@ -43,7 +45,7 @@ public class Main extends Application {
     private void loadMenuScene() throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("menuView.fxml"));
         Scene menuScene = new Scene(fxmlLoader.load(), primaryStage.getWidth(), primaryStage.getHeight());
-        menuScene.getStylesheets().add(Main.class.getResource("menuStyles.css").toExternalForm());
+        menuScene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("menuStyles.css")).toExternalForm());
         Platform.runLater(() -> {
             primaryStage.setScene(menuScene);
             primaryStage.show();
@@ -69,6 +71,9 @@ public class Main extends Application {
     public static void switchToFormsScene() {
         applyFadeTransitionAndLoad("formsView.fxml");
     }
+    public static void switchToEditSettingsScene() {
+        applyFadeTransitionAndLoad("editSetsView.fxml");
+    }
 
     private static void applyFadeTransitionAndLoad(String fxmlFile) {
         Platform.runLater(() -> {
@@ -82,7 +87,7 @@ public class Main extends Application {
                         Scene newScene = new Scene(newRoot, primaryStage.getWidth(), primaryStage.getHeight());
 
                         if (fxmlFile.equals("menuView.fxml")) {
-                            newScene.getStylesheets().add(Main.class.getResource("menuStyles.css").toExternalForm());
+                            newScene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("menuStyles.css")).toExternalForm());
                         }
 
                         // Apply a fade-in effect after loading the new scene
@@ -101,7 +106,7 @@ public class Main extends Application {
                     Scene newScene = new Scene(newRoot, primaryStage.getWidth(), primaryStage.getHeight());
 
                     if (fxmlFile.equals("menuView.fxml")) {
-                        newScene.getStylesheets().add(Main.class.getResource("menuStyles.css").toExternalForm());
+                        newScene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("menuStyles.css")).toExternalForm());
                     }
 
                     primaryStage.setScene(newScene);
