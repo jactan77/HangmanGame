@@ -83,16 +83,7 @@ public class Db {
         }
     }
 
-    public void deleteWord(String word, int category) {
-        String sql = "DELETE FROM Words WHERE word = ? AND Category = ?";
-        try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
-            pstmt.setString(1, word);
-            pstmt.setInt(2, category);
-            int affectedRows = pstmt.executeUpdate();
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error deleting word: {0}", e.getMessage());
-        }
-    }
+
 
     public boolean categoryExists(String category) {
         String checkCategorySQL = "SELECT 1 FROM Categories WHERE name_category = ?";
@@ -164,6 +155,47 @@ public class Db {
             logger.log(Level.SEVERE, "Error getting category name: {0}", e.getMessage());
         }
         return categoryName;
+    }
+    public void updateCategorySet(int id, ArrayList<String> words) {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            conn.setAutoCommit(false);
+            String sqlDelete = "DELETE FROM Words WHERE Category = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(sqlDelete)) {
+                pstmt.setInt(1, id);
+                pstmt.executeUpdate();
+            }
+
+
+            String sqlInsert = "INSERT INTO Words(Category, word) VALUES(?, ?)";
+            try (PreparedStatement pstmt = conn.prepareStatement(sqlInsert)) {
+                for (String word : words) {
+                    pstmt.setInt(1, id);
+                    pstmt.setString(2, word);
+                    pstmt.executeUpdate();
+                }
+            }
+
+            conn.commit();
+        } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException rollbackEx) {
+                    logger.log(Level.SEVERE, "Error rolling back transaction", rollbackEx);
+                }
+            }
+            logger.log(Level.SEVERE, "Error updating category set", e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true);
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error resetting auto-commit", e);
+                }
+            }
+        }
     }
 
 }

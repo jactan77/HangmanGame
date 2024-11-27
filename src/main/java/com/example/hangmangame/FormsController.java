@@ -78,6 +78,7 @@ public class FormsController {
         deleteButton.setStyle("-fx-background-color: #FF4444; -fx-text-fill: white;");
 
         deleteButton.setOnAction(event -> {
+            soundEffects.clickEffect();
             cardContainer.getChildren().remove(cardBox);
             cards.remove(cardBox);
             renumberCards();
@@ -182,6 +183,7 @@ public class FormsController {
         Alert alert = new Alert(alertType, message, ButtonType.OK);
         alert.showAndWait();
     }
+
 
 
 }

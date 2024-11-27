@@ -90,7 +90,7 @@ public class Main extends Application {
                             newScene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("menuStyles.css")).toExternalForm());
                         }
 
-                        // Apply a fade-in effect after loading the new scene
+
                         primaryStage.setScene(newScene);
                         Transition.fadeIn(newRoot).play();
                         primaryStage.show();

@@ -1,6 +1,5 @@
 package com.example.hangmangame;
 
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +11,7 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 
 public class EditSetsController extends FormsController {
-
+    private final ArrayList<String> wordsDb = db.getWords(Main.getSelectedCategory());
     @Override
     public void initialize() {
 
@@ -43,8 +42,7 @@ public class EditSetsController extends FormsController {
     }
 
     public void showWords() {
-        ArrayList<String> words = db.getWords(Main.getSelectedCategory());
-        words.forEach(this::createNewCard);
+        wordsDb.forEach(this::createNewCard);
     }
 
 
@@ -75,7 +73,7 @@ public class EditSetsController extends FormsController {
         deleteButton.setStyle("-fx-background-color: #FF4444; -fx-text-fill: white;");
 
         deleteButton.setOnAction(event -> {
-            db.deleteWord(word, Main.getSelectedCategory());
+            createButton.setDisable(false);
             cardContainer.getChildren().remove(cardBox);
             cards.remove(cardBox);
             renumberCards();
@@ -105,14 +103,16 @@ public class EditSetsController extends FormsController {
         if(!isValidWord()){
             return;
         }
-
+        ArrayList<String> newWords = new ArrayList<>();
         for (HBox card : cards) {
 
             VBox textFieldBox = (VBox) card.getChildren().get(1);
             TextField wordField = (TextField) textFieldBox.getChildren().getFirst();
             String word = wordField.getText().trim();
-            db.addWord(word, db.getCategoryId(category.toLowerCase()));
+            newWords.add(word);
+
         }
+        db.updateCategorySet(Main.getSelectedCategory(), newWords);
 
         showAlert(Alert.AlertType.INFORMATION, " Changes applied successfully!");
         Main.loadUserCategoryScene();
