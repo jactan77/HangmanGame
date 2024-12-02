@@ -193,66 +193,47 @@ public class Db {
             }
         }
     }
-    public boolean userExist(int userId){
-        String selectQuery = "SELECT 1 FROM Users_Data WHERE id = ?";
-        boolean isExist = false;
-        try(PreparedStatement pstmt = getConnection().prepareStatement(selectQuery)){
-            pstmt.setInt(1,userId);
-            ResultSet rs = pstmt.executeQuery();
-            if(rs.next()){
-                isExist = true;
+    public boolean userExists() {
+        String sql = "SELECT 1 FROM Users_Data WHERE id = 1";
+        try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next();
             }
-        }catch(SQLException e){
-            logger.log(Level.SEVERE, "Error creating user", e);
+        } catch (SQLException e) {
+            log.error("Error checking user existence", e);
+            return false;
         }
-        return isExist;
     }
-    public int createUser() {
-        String insertQuery = "INSERT INTO Users_Data (best_score) VALUES (0)";
-        int userId = -1;
 
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
-
-            // Execute the insert query
+    public void createUser() {
+        String insertQuery = "INSERT INTO Users_Data (id,best_score) VALUES (1,0)";
+        try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
             pstmt.executeUpdate();
 
-            // Retrieve the last inserted ID using last_insert_rowid()
-            String selectLastIdQuery = "SELECT last_insert_rowid()";
-            try (Statement stmt = conn.createStatement();
-                 ResultSet rs = stmt.executeQuery(selectLastIdQuery)) {
+        }catch (SQLException e) {
+            log.error("Error creating user", e);
 
-                if (rs.next()) {
-                    userId = rs.getInt(1);
-                }
-            }
+        }
+    }
 
+    public int getBestScore() {
+        String sql = "SELECT best_score FROM Users_Data WHERE id = 1";
+        try (PreparedStatement pstmt = getConnection().prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+            return rs.next() ? rs.getInt("best_score") : -1;
         } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
+            log.error("Error getting best score", e);
+            return -1;
         }
-
-        return userId;
     }
-    public int getBestScore(){
-        String selectQuery  = "SELECT best_score FROM Users_Data WHERE id = 1";
-        int bestScore = -1;
-        try(PreparedStatement pstmt = getConnection().prepareStatement(selectQuery)){
-            ResultSet rs = pstmt.executeQuery();
-            if(rs.next()){
-                bestScore = rs.getInt("best_score");
-            }
 
-        } catch (SQLException e){
-            logger.log(Level.SEVERE, "Error getting best score", e);
-        }
-        return bestScore;
-    }
-    public void updateBestScore(int updateScore){
-        String updateQuery = "UPDATE Users_Data SET best_score = ? WHERE id = 1";
-        try(PreparedStatement pstmt = getConnection().prepareStatement(updateQuery)){
-            pstmt.setInt(1, updateScore);pstmt.executeUpdate();  // Issue here
-        } catch(SQLException e){
-            logger.log(Level.SEVERE, "Error updating best score", e);
+    public void updateBestScore(int score) {
+        String sql = "UPDATE Users_Data SET best_score = ? WHERE id = 1";
+        try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
+            pstmt.setInt(1, score);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            log.error("Error updating best score", e);
         }
     }
 

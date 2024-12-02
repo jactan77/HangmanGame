@@ -39,9 +39,9 @@ public class Main extends Application {
         primaryStage.setResizable(true);
         loadMenuScene();
         db.getConnection();
-        if(db.userExist(1)) System.out.println("He exists");
+        if(db.userExists()) System.out.println("User exists");
         else{
-            System.out.println("He doesn't exist");
+            System.out.println("User doesn't exist");
             db.createUser();
         }
 
