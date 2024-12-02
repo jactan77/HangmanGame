@@ -16,6 +16,7 @@ public class Main extends Application {
     private static Stage primaryStage;
     private final Db db = new Db();
     private static int selectedCategory;
+    private static int selectedScore;
 
     public static int getSelectedCategory() {
         return selectedCategory;
@@ -25,6 +26,11 @@ public class Main extends Application {
         selectedCategory = category;
     }
 
+    public static void setSelectedScore(int score) { selectedScore = score;}
+
+    public static int getSelectedScore() { return selectedScore;}
+
+
     @Override
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
@@ -33,6 +39,11 @@ public class Main extends Application {
         primaryStage.setResizable(true);
         loadMenuScene();
         db.getConnection();
+        if(db.userExist(1)) System.out.println("He exists");
+        else{
+            System.out.println("He doesn't exist");
+            db.createUser();
+        }
 
         primaryStage.widthProperty().addListener((observable, oldValue, newValue) -> {
             resizeCurrentScene();

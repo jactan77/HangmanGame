@@ -3,11 +3,7 @@ package com.example.hangmangame;
 import com.example.hangmangame.utils.RandomColors;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
@@ -197,5 +193,68 @@ public class Db {
             }
         }
     }
+    public boolean userExist(int userId){
+        String selectQuery = "SELECT 1 FROM Users_Data WHERE id = ?";
+        boolean isExist = false;
+        try(PreparedStatement pstmt = getConnection().prepareStatement(selectQuery)){
+            pstmt.setInt(1,userId);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                isExist = true;
+            }
+        }catch(SQLException e){
+            logger.log(Level.SEVERE, "Error creating user", e);
+        }
+        return isExist;
+    }
+    public int createUser() {
+        String insertQuery = "INSERT INTO Users_Data (best_score) VALUES (0)";
+        int userId = -1;
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
+
+            // Execute the insert query
+            pstmt.executeUpdate();
+
+            // Retrieve the last inserted ID using last_insert_rowid()
+            String selectLastIdQuery = "SELECT last_insert_rowid()";
+            try (Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(selectLastIdQuery)) {
+
+                if (rs.next()) {
+                    userId = rs.getInt(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        return userId;
+    }
+    public int getBestScore(){
+        String selectQuery  = "SELECT best_score FROM Users_Data WHERE id = 1";
+        int bestScore = -1;
+        try(PreparedStatement pstmt = getConnection().prepareStatement(selectQuery)){
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                bestScore = rs.getInt("best_score");
+            }
+
+        } catch (SQLException e){
+            logger.log(Level.SEVERE, "Error getting best score", e);
+        }
+        return bestScore;
+    }
+    public void updateBestScore(int updateScore){
+        String updateQuery = "UPDATE Users_Data SET best_score = ? WHERE id = 1";
+        try(PreparedStatement pstmt = getConnection().prepareStatement(updateQuery)){
+            pstmt.setInt(1, updateScore);pstmt.executeUpdate();  // Issue here
+        } catch(SQLException e){
+            logger.log(Level.SEVERE, "Error updating best score", e);
+        }
+    }
+
 
 }

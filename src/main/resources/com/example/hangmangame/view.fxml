@@ -10,6 +10,10 @@
         <HBox alignment="CENTER" spacing="20" style="-fx-padding: 10; -fx-background-color: #f4f4f4;">
             <Label text="Hangman Game" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
             <Region fx:id="spacer" HBox.hgrow="ALWAYS" />
+            <Label text="Record Score: " style="-fx-font-size: 16px"/>
+            <Label fx:id="bestScoreCounter" style="-fx-font-size: 16px; -fx-text-fill: orange;"/>
+            <Label text="Score: "  style="-fx-font-size: 16px;" />
+            <Label fx:id="scoreCounter" text="0" style="-fx-font-size: 16px; -fx-text-fill: orange;" />
             <Label text="Mistakes: " style="-fx-font-size: 16px;"/>
             <Label fx:id="mistakesCounter" text="0" style="-fx-font-size: 16px; -fx-text-fill: red;"/>
             <Button fx:id="resetButton" text="Reset" styleClass="letter-button"/>

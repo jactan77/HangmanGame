@@ -36,27 +36,33 @@ public class Controller {
     @FXML
     private Label mistakesCounter;
     @FXML
+    private Label scoreCounter;
+    @FXML
+    private Label bestScoreCounter;
+    @FXML
     private FlowPane letterGrid; 
 
 
     private String wordToGuess;
     private char[] guessedWord;
     private final int maxMistakes = 10;
+    private int score = Main.getSelectedScore();
+    private int bestScore = db.getBestScore();
     private int mistakes;
+    private final int category = Main.getSelectedCategory();
     private final CategoryViewController selectedCategory = new CategoryViewController();
 
 
     public void initialize() {
-        resetButton.setOnAction(event -> {soundEffects.clickEffect(); Main.loadCategoryScene();});
+        resetButton.setOnAction(event -> {soundEffects.clickEffect(); Main.setSelectedScore(0);Main.loadCategoryScene();});
         exitButton.setOnAction(event -> {soundEffects.clickEffect(); Platform.exit();});
-        menuButton.setOnAction(event -> {soundEffects.clickEffect(); Main.switchToMenuScene();});
+        menuButton.setOnAction(event -> {soundEffects.clickEffect(); Main.setSelectedScore(0); Main.switchToMenuScene();});
 
-
-
-        int category = Main.getSelectedCategory();
         getRandomWord(category);
         setupLetterButtons();
         this.hangmanAnimation = new HangmanAnimation(animationPane);
+        scoreCounter.setText(String.valueOf(score));
+        bestScoreCounter.setText(String.valueOf(bestScore));
     }
 
     private void getRandomWord(int category) {
@@ -75,7 +81,7 @@ public class Controller {
     }
 
     private void resetGame(String message) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, message + "Would you like to restart the entire game?", ButtonType.YES, ButtonType.NO);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, message + "Would you like to restart the entire game?", ButtonType.NO, ButtonType.YES);
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.YES) {
@@ -133,13 +139,22 @@ public class Controller {
         if (correctGuess) {
             soundEffects.clickEffect();
             if (isWordFullyGuessed()) {
-                resetGame("Congratulations, you won the game.");
+                scoreCounter.setText(String.valueOf(++this.score));
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Correct guess!", ButtonType.OK);
+                alert.showAndWait();
+                if(score > bestScore)
+                    db.updateBestScore(score);
+                Main.setSelectedScore(score);
+                Main.setSelectedCategory(category);
+                Main.switchToGameScene();
             }
         } else {
             mistakesCounter.setText(String.valueOf(++this.mistakes));
             if (!hangmanAnimation.isComplete()) hangmanAnimation.nextStep();
             if (mistakes >= maxMistakes) {
                 showFullWord();
+                score = 0;
+                scoreCounter.setText(String.valueOf(score));
                 resetGame("Game Over! You've made too many mistakes.");
             }
         }
