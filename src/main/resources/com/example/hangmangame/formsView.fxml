@@ -48,6 +48,10 @@
                     styleClass="add-button"
                     text="+ Add New Word"
                     maxWidth="200"/>
+            <Button fx:id="deleteCards"
+                    styleClass="add-button"
+                    text="Clear all words"
+                    maxWidth="200"/>
 
             <!-- Bottom Action Buttons -->
             <HBox spacing="15" alignment="CENTER">

@@ -34,6 +34,10 @@ public class EditSetsController extends FormsController {
             soundEffects.clickEffect();
             addWord();
         });
+        deleteCards.setOnAction(event -> {
+            soundEffects.clickEffect();
+            deleteAllCards();
+        });
 
 
         categoryName.setText(db.getCategoryName(Main.getSelectedCategory()));
@@ -67,6 +71,11 @@ public class EditSetsController extends FormsController {
         TextField termField = new TextField();
         termField.setText(word);
         termField.setStyle("-fx-background-color: #1E1E2E; -fx-text-fill: white;");
+
+        termField.textProperty().addListener((observable, oldValue, newValue) -> {
+            createButton.setDisable(false);
+
+        });
 
         Button deleteButton = new Button("Delete");
         deleteButton.getStyleClass().add("delete-button");
@@ -141,6 +150,7 @@ public class EditSetsController extends FormsController {
         currentCard = cards.size();
         updateDeleteButtonState();
     }
+
 
 
 }

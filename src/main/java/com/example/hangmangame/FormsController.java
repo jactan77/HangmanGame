@@ -13,6 +13,8 @@ import java.util.List;
 
 public class FormsController {
     @FXML
+    public Button deleteCards;
+    @FXML
     public Button backButton;
     @FXML
     public Button addWordButton;
@@ -31,6 +33,7 @@ public class FormsController {
     public void initialize() {
 
         createNewCard();
+        createButton.setDisable(true);
         addWordButton.setOnAction(event -> {
             soundEffects.clickEffect();
             createNewCard();});
@@ -42,6 +45,10 @@ public class FormsController {
             soundEffects.clickEffect();
             addWord();
 
+        });
+        deleteCards.setOnAction(event -> {
+            soundEffects.clickEffect();
+            deleteAllCards();
         });
 
     }
@@ -72,7 +79,10 @@ public class FormsController {
         TextField termField = new TextField();
         termField.setPromptText("TERM");
         termField.setStyle("-fx-background-color: #1E1E2E; -fx-text-fill: white;");
+        termField.textProperty().addListener((observable, oldValue, newValue) -> {
+            createButton.setDisable(false);
 
+        });
 
         Button deleteButton = new Button("Delete");
         deleteButton.getStyleClass().add("delete-button");
@@ -92,7 +102,7 @@ public class FormsController {
         textFieldBox.getChildren().add(termField);
         cardBox.getChildren().addAll(numberLabel, textFieldBox, buttonBox);
 
-        // Add to container and list
+
         cardContainer.getChildren().add(cardBox);
         cards.add(cardBox);
     }
@@ -145,6 +155,12 @@ public class FormsController {
 
         showAlert(Alert.AlertType.INFORMATION, "Category and words added successfully!");
         Main.loadUserCategoryScene();
+    }
+    public void deleteAllCards() {
+        cards.clear();
+        cardContainer.getChildren().clear();
+        currentCard = 0;
+        createButton.setDisable(true);
     }
     public boolean isValidWord() {
         for (int i = 0; i < cards.size(); i++) {
