@@ -10,7 +10,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
-import javafx.application.Platform; 
+import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import java.util.Arrays;
@@ -40,14 +40,14 @@ public class Controller {
     @FXML
     private Label bestScoreCounter;
     @FXML
-    private FlowPane letterGrid; 
+    private FlowPane letterGrid;
 
 
     private String wordToGuess;
     private char[] guessedWord;
     private final int maxMistakes = 10;
     private int score = Main.getSelectedScore();
-    private int bestScore = db.getBestScore();
+    private final int bestScore = db.getBestScore();
     private int mistakes;
     private final int category = Main.getSelectedCategory();
     private final CategoryViewController selectedCategory = new CategoryViewController();

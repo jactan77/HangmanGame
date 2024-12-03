@@ -1,6 +1,6 @@
 package com.example.hangmangame;
 
-import com.example.hangmangame.utils.RandomColors;
+
 import com.example.hangmangame.utils.UISoundEffects;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,7 +9,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 public class FormsController {
     @FXML
@@ -43,6 +43,7 @@ public class FormsController {
             addWord();
 
         });
+
     }
 
 

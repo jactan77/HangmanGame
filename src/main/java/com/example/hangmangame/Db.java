@@ -206,7 +206,7 @@ public class Db {
     }
 
     public void createUser() {
-        String insertQuery = "INSERT INTO Users_Data (id,best_score) VALUES (1,0)";
+        String insertQuery = "INSERT INTO Users_Data(id) VALUES (1) ;";
         try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
             pstmt.executeUpdate();
 

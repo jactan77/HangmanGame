@@ -43,6 +43,7 @@ public class Main extends Application {
         else{
             System.out.println("User doesn't exist");
             db.createUser();
+
         }
 
         primaryStage.widthProperty().addListener((observable, oldValue, newValue) -> {

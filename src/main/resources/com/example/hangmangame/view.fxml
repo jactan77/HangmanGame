@@ -4,39 +4,46 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.Image?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.hangmangame.Controller" stylesheets="@application.css">
 
     <top>
-        <HBox alignment="CENTER" spacing="20" style="-fx-padding: 10; -fx-background-color: #f4f4f4;">
-            <Label text="Hangman Game" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+        <HBox alignment="CENTER" spacing="20" styleClass="header">
+            <Label text="Hangman Game" styleClass="title"/>
             <Region fx:id="spacer" HBox.hgrow="ALWAYS" />
-            <Label text="Record Score: " style="-fx-font-size: 16px"/>
-            <Label fx:id="bestScoreCounter" style="-fx-font-size: 16px; -fx-text-fill: orange;"/>
-            <Label text="Score: "  style="-fx-font-size: 16px;" />
-            <Label fx:id="scoreCounter" text="0" style="-fx-font-size: 16px; -fx-text-fill: orange;" />
-            <Label text="Mistakes: " style="-fx-font-size: 16px;"/>
-            <Label fx:id="mistakesCounter" text="0" style="-fx-font-size: 16px; -fx-text-fill: red;"/>
-            <Button fx:id="resetButton" text="Reset" styleClass="letter-button"/>
-            <Button fx:id="menuButton" text="Menu" styleClass="letter-button" style="-fx-background-color: #3737fd"/>
-            <Button fx:id="exitButton" text="Exit" styleClass="letter-button" style="-fx-background-color: red"/>
+            <Label text="Record Score: " styleClass="score-label"/>
+            <HBox alignment="CENTER" spacing="5">
+                <Label fx:id="bestScoreCounter" styleClass="record-score"/>
+                <ImageView fitHeight="30" fitWidth="30" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@Images/fireImage.png"/>
+                </ImageView>
+            </HBox>
+            <Label text="Score: " styleClass="score-label" />
+            <Label fx:id="scoreCounter" text="0" styleClass="current-score" />
+            <Label text="Mistakes: " styleClass="score-label"/>
+            <Label fx:id="mistakesCounter" text="0" styleClass="mistake-counter"/>
+            <Button fx:id="resetButton" text="Reset" styleClass="action-button"/>
+            <Button fx:id="menuButton" text="Menu" styleClass="action-button, menu-button"/>
+            <Button fx:id="exitButton" text="Exit" styleClass="action-button, exit-button"/>
         </HBox>
     </top>
 
     <center>
-        <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20;">
+        <ScrollPane fx:id="gameScrollPane" fitToWidth="true" fitToHeight="true" styleClass="scroll-pane">
+            <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20;">
+                <Pane fx:id="gallowsPane" minWidth="400" minHeight="600" styleClass="gallows-pane">
+                    <Pane fx:id="animationPane" minWidth="400" minHeight="600"/>
+                </Pane>
 
-            <Pane fx:id="gallowsPane" minWidth="400" minHeight="600" style="-fx-background-color: #355E3B; -fx-border-color: #ffffff; -fx-border-width: 2;">
-                <Pane fx:id="animationPane" minWidth="400" minHeight="600"/>
-            </Pane>
-
-            <HBox fx:id="wordDisplay" alignment="CENTER" spacing="10">
-
-            </HBox>
-        </VBox>
+                <HBox fx:id="wordDisplay" alignment="CENTER" spacing="10">
+                    <!-- Word display content here -->
+                </HBox>
+            </VBox>
+        </ScrollPane>
     </center>
 
     <bottom>
-        <FlowPane fx:id="letterGrid" hgap="8" vgap="8" alignment="CENTER" style="-fx-padding: 10;">
+        <FlowPane fx:id="letterGrid" hgap="8" vgap="8" alignment="CENTER" styleClass="keyboard">
             <Button text="A" styleClass="wooden-button"/>
             <Button text="Ą" styleClass="wooden-button"/>
             <Button text="B" styleClass="wooden-button"/>
