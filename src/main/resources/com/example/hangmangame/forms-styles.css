@@ -84,17 +84,26 @@
 }
 
 /* Button Styles */
-.add-button {
+.add-button, .clear-button {
     -fx-background-color: #414868;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-padding: 10px 20px;
     -fx-background-radius: 5px;
     -fx-cursor: hand;
+    -fx-min-width: 150px;
 }
 
 .add-button:hover {
     -fx-background-color: #535a8f;
+}
+
+.clear-button {
+    -fx-background-color: #6c5c7c;
+}
+
+.clear-button:hover {
+    -fx-background-color: #7d6b8f;
 }
 
 .primary-button {
@@ -134,4 +143,53 @@
 
 .delete-button:hover {
     -fx-background-color: #ff8599;
+}
+.custom-color-picker {
+    -fx-background-color: #24283b;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #414868;
+    -fx-border-width: 1px;
+}
+
+.custom-color-picker:hover {
+    -fx-border-color: #7aa2f7;
+}
+
+.custom-color-picker .color-picker-label {
+    -fx-text-fill: white;
+}
+
+.custom-color-picker .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.custom-color-picker .arrow {
+    -fx-background-color: #a9b1d6;
+}
+
+/* Color Dialog customization */
+.color-palette {
+    -fx-background-color: #1a1b26;
+    -fx-background-radius: 5px;
+}
+
+.color-palette-region {
+    -fx-background-color: #24283b;
+}
+
+.custom-color-dialog {
+    -fx-background-color: #1a1b26;
+}
+
+.custom-color-dialog .label {
+    -fx-text-fill: #a9b1d6;
+}
+
+.custom-color-dialog .slider .thumb {
+    -fx-background-color: #7aa2f7;
+}
+
+.custom-color-dialog .slider .track {
+    -fx-background-color: #414868;
 }

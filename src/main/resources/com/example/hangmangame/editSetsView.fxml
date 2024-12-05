@@ -44,14 +44,16 @@
         <!-- Action Buttons Section -->
         <VBox spacing="15" alignment="CENTER">
             <!-- Add Word Button -->
-            <Button fx:id="addWordButton"
-                    styleClass="add-button"
-                    text="+ Add New Word"
-                    maxWidth="200"/>
-            <Button fx:id="deleteCards"
-                    styleClass="add-button"
-                    text="Clear all words"
-                    maxWidth="200"/>
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="addWordButton"
+                        styleClass="add-button"
+                        text="+ Add New Word"
+                        maxWidth="200"/>
+                <Button fx:id="deleteCards"
+                        styleClass="clear-button"
+                        text="Clear All Words"
+                        maxWidth="200"/>
+            </HBox>
 
             <!-- Bottom Action Buttons -->
             <HBox spacing="15" alignment="CENTER">

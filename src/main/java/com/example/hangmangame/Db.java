@@ -94,12 +94,12 @@ public class Db {
         }
     }
 
-    public void addCategory(String category) {
+    public void addCategory(String category, String colorHex) {
             String insertCategorySQL = "INSERT INTO Categories (name_category,color_hex,isUser) VALUES (?,?,?)";
 
             try (PreparedStatement pstmt = getConnection().prepareStatement(insertCategorySQL)) {
                 pstmt.setString(1, category);
-                pstmt.setString(2, RandomColors.setRandomColor());
+                pstmt.setString(2, colorHex);
                 pstmt.setBoolean(3,true);
                 pstmt.executeUpdate();
                 logger.info("New category added: " + category);

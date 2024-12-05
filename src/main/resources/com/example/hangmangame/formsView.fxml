@@ -22,10 +22,18 @@
 
         <!-- Category Input Section -->
         <VBox spacing="10" styleClass="category-input-section">
-            <Label text="Category Name" styleClass="label-text"/>
-            <TextField fx:id="categoryName"
-                       promptText="Enter category name"
-                       styleClass="custom-text-field"/>
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Category Name" styleClass="label-text"/>
+                    <TextField fx:id="categoryName"
+                               promptText="Enter category name"
+                               styleClass="custom-text-field"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Category Color" styleClass="label-text"/>
+                    <ColorPicker fx:id="categoryColor" styleClass="custom-color-picker"/>
+                </VBox>
+            </HBox>
         </VBox>
 
         <!-- Cards Container with ScrollPane -->
@@ -43,15 +51,17 @@
 
         <!-- Action Buttons Section -->
         <VBox spacing="15" alignment="CENTER">
-            <!-- Add Word Button -->
-            <Button fx:id="addWordButton"
-                    styleClass="add-button"
-                    text="+ Add New Word"
-                    maxWidth="200"/>
-            <Button fx:id="deleteCards"
-                    styleClass="add-button"
-                    text="Clear all words"
-                    maxWidth="200"/>
+            <!-- Add Word and Clear Buttons -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="addWordButton"
+                        styleClass="add-button"
+                        text="+ Add New Word"
+                        maxWidth="200"/>
+                <Button fx:id="deleteCards"
+                        styleClass="clear-button"
+                        text="Clear All Words"
+                        maxWidth="200"/>
+            </HBox>
 
             <!-- Bottom Action Buttons -->
             <HBox spacing="15" alignment="CENTER">
