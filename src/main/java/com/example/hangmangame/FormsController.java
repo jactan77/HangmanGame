@@ -110,6 +110,7 @@ public class FormsController {
 
         deleteButton.setOnAction(event -> {
             soundEffects.clickEffect();
+            createButton.setDisable(false);
             cardContainer.getChildren().remove(cardBox);
             cards.remove(cardBox);
             renumberCards();

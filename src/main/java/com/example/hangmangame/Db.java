@@ -193,6 +193,30 @@ public class Db {
             }
         }
     }
+    public void updateCategoryColor(String color_hex, int id){
+        String sqlInsert = "UPDATE Categories SET color_hex = ? WHERE Id = ?";
+        try(PreparedStatement pstmt = getConnection().prepareStatement(sqlInsert)){
+            pstmt.setString(1, color_hex);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        }catch(SQLException e){
+            logger.log(Level.SEVERE, "Error updating category color", e);
+        }
+    }
+    public String getCategoryColor(int id) {
+        String color = null;
+        String selectQuery = "SELECT color_hex from Categories WHERE Id = ?";
+        try(PreparedStatement pstmt = getConnection().prepareStatement(selectQuery)){
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                color = rs.getString("color_hex");
+            }
+        }catch (SQLException e){
+            logger.log(Level.SEVERE, "Error getting category color", e);
+        }
+        return color;
+    }
     public boolean userExists() {
         String sql = "SELECT 1 FROM Users_Data WHERE id = 1";
         try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
