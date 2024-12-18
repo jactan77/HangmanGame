@@ -68,7 +68,7 @@ public class Db {
 
         try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
             pstmt.setInt(1, Category);
-            pstmt.setString(2, word);
+            pstmt.setString(2, word.toLowerCase());
 
 
             pstmt.executeUpdate();
@@ -98,7 +98,7 @@ public class Db {
             String insertCategorySQL = "INSERT INTO Categories (name_category,color_hex,isUser) VALUES (?,?,?)";
 
             try (PreparedStatement pstmt = getConnection().prepareStatement(insertCategorySQL)) {
-                pstmt.setString(1, category);
+                pstmt.setString(1, category.toLowerCase());
                 pstmt.setString(2, colorHex);
                 pstmt.setBoolean(3,true);
                 pstmt.executeUpdate();

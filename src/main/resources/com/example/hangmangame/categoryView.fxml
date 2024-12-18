@@ -11,7 +11,7 @@
             fx:controller="com.example.hangmangame.CategoryViewController"
             prefHeight="400.0" prefWidth="600.0"
             styleClass="main-container"
-            stylesheets="@categoryStyles.css" style="-fx-padding: 20;">
+            stylesheets="@styles/categoryStyles.css" style="-fx-padding: 20;">
 
 
     <VBox alignment="CENTER" spacing="15" fx:id="buttonContainer"
@@ -30,6 +30,7 @@
         -->
         <!-- Move 'Add your Set' button to the last position -->
         <Button fx:id="userSetsButton" text="Your Sets"/>
+        <Button fx:id="backButton" text="Back"/>
     </VBox>
 
 </AnchorPane>

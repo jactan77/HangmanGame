@@ -19,6 +19,8 @@ public class CategoryViewController {
     private VBox buttonContainer;
     @FXML
     private Button userSetsButton;
+    @FXML
+    private Button backButton;
 
     @FXML
     public void initialize() {
@@ -27,6 +29,10 @@ public class CategoryViewController {
         userSetsButton.setOnAction(event -> {
             soundEffects.clickEffect();
             Main.loadUserCategoryScene();
+        });
+        backButton.setOnAction(event -> {
+            soundEffects.clickEffect();
+            Main.switchToMenuScene();
         });
 
 

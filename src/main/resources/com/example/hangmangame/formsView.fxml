@@ -9,7 +9,7 @@
             fx:controller="com.example.hangmangame.FormsController"
             prefHeight="700.0" prefWidth="900.0"
             styleClass="root"
-            stylesheets="@forms-styles.css">
+            stylesheets="@styles/forms-styles.css">
 
     <VBox spacing="20" styleClass="main-container"
           AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20"

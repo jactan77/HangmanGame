@@ -9,7 +9,7 @@
             fx:controller="com.example.hangmangame.SetsController"
             prefHeight="600.0" prefWidth="800.0"
             styleClass="root"
-            stylesheets="@setsStyles.css">
+            stylesheets="@styles/setsStyles.css">
 
     <VBox alignment="CENTER" spacing="30" styleClass="main-container"
           AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"

@@ -57,7 +57,7 @@ public class Main extends Application {
     private void loadMenuScene() throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("menuView.fxml"));
         Scene menuScene = new Scene(fxmlLoader.load(), primaryStage.getWidth(), primaryStage.getHeight());
-        menuScene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("menuStyles.css")).toExternalForm());
+        menuScene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("styles/menuStyles.css")).toExternalForm());
         Platform.runLater(() -> {
             primaryStage.setScene(menuScene);
             primaryStage.show();
@@ -99,7 +99,7 @@ public class Main extends Application {
                         Scene newScene = new Scene(newRoot, primaryStage.getWidth(), primaryStage.getHeight());
 
                         if (fxmlFile.equals("menuView.fxml")) {
-                            newScene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("menuStyles.css")).toExternalForm());
+                            newScene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("styles/menuStyles.css")).toExternalForm());
                         }
 
 
