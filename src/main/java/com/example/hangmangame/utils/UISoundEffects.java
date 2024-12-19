@@ -4,12 +4,22 @@ import javafx.scene.media.AudioClip;
 public class UISoundEffects {
     private final AudioClip animationSound = new AudioClip(getClass().getResource("/com/example/hangmangame/sounds/chalkSound.wav").toString());
     private final AudioClip clickSound = new AudioClip(getClass().getResource("/com/example/hangmangame/sounds/sound.wav").toString());
+    private boolean isMuted;
 
+    public UISoundEffects(){
+        isMuted = false;
+    }
     public void clickEffect() {
-        clickSound.play();
+        if(!isMuted)
+            clickSound.play();
+
     }
     public void animationSound() {
-        CompletableFuture.runAsync(animationSound::play);
+        if(!isMuted)
+            CompletableFuture.runAsync(animationSound::play);
     }
-    /// More effects coming soon....
+    public void setMuted(boolean muted) {
+        isMuted = muted;
+    }
+
 }

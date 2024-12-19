@@ -8,10 +8,11 @@ import javafx.scene.paint.Color;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EditSetsController extends FormsController {
     private final int selectedCategory = Main.getSelectedCategory();
-    private final ArrayList<String> wordsDb = db.getWords(selectedCategory);
+    private final List<String> wordsDb = db.getWords(selectedCategory);
     private final ArrayList<String> newWords = new ArrayList<>();
     private final String getCategoryColor = db.getCategoryColor(selectedCategory);
     @Override
