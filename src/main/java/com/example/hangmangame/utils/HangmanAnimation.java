@@ -1,5 +1,4 @@
 package com.example.hangmangame.utils;
-import com.example.hangmangame.utils.UISoundEffects;
 import javafx.animation.ScaleTransition;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -7,18 +6,17 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 
-public class HangmanAnimation {
-    private final UISoundEffects soundEffects = new UISoundEffects();
+public class HangmanAnimation  {
+    private final UISoundEffects soundEffects;
     private final Pane pane;
     private int currentStep = 0;
-
-
     private Line base, pole, beam, rope;
     private Circle head;
     private Line body, leftArm, rightArm, leftLeg, rightLeg;
 
-    public HangmanAnimation(Pane pane) {
+    public HangmanAnimation(Pane pane,UISoundEffects soundEffects) {
         this.pane = pane;
+        this.soundEffects = soundEffects;
         initializeParts();
     }
 

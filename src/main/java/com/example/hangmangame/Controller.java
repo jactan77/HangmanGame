@@ -4,12 +4,10 @@ import java.util.concurrent.CompletableFuture;
 import com.example.hangmangame.utils.HangmanAnimation;
 import com.example.hangmangame.utils.UISoundEffects;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.control.Label;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -41,6 +39,10 @@ public class Controller {
     private Label bestScoreCounter;
     @FXML
     private FlowPane letterGrid;
+    @FXML
+    private ImageView soundIcon;
+    @FXML
+    private ToggleButton soundToggle;
 
 
     private String wordToGuess;
@@ -50,20 +52,39 @@ public class Controller {
     private final int bestScore = db.getBestScore();
     private int mistakes;
     private final int category = Main.getSelectedCategory();
-    private final CategoryViewController selectedCategory = new CategoryViewController();
+    private boolean isMuted = false;
+
 
 
     public void initialize() {
         resetButton.setOnAction(event -> {soundEffects.clickEffect(); Main.setSelectedScore(0);Main.loadCategoryScene();});
         exitButton.setOnAction(event -> {soundEffects.clickEffect(); Platform.exit();});
         menuButton.setOnAction(event -> {soundEffects.clickEffect(); Main.setSelectedScore(0); Main.switchToMenuScene();});
-
+        setSoundToggle();
         getRandomWord(category);
         setupLetterButtons();
-        this.hangmanAnimation = new HangmanAnimation(animationPane);
+        this.hangmanAnimation = new HangmanAnimation(animationPane,soundEffects);
         scoreCounter.setText(String.valueOf(score));
         bestScoreCounter.setText(String.valueOf(bestScore));
     }
+
+    private void setSoundToggle() {
+        soundToggle.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            soundEffects.clickEffect();
+            isMuted = newValue;
+            soundEffects.setMuted(isMuted);
+
+            String imagePath = isMuted ? "Images/speaker-off.png" : "Images/speaker-on.png";
+            Image newImage = new Image(getClass().getResource(imagePath).toExternalForm());
+            soundIcon.setImage(newImage);
+            if (!isMuted) {
+                soundEffects.clickEffect();
+            }
+        });
+    }
+
+
+
 
     private void getRandomWord(int category) {
         CompletableFuture.supplyAsync(() -> db.getRandomWord(category))

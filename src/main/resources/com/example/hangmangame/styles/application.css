@@ -139,6 +139,28 @@
 .scroll-bar .track {
     -fx-background-color: #2c3e50;
 }
+.header-icon-button {
+    -fx-background-radius: 50%;
+    -fx-min-width: 36px;
+    -fx-min-height: 36px;
+    -fx-max-width: 36px;
+    -fx-max-height: 36px;
+    -fx-background-color: #3498db;
+    -fx-padding: 8;
+}
+
+.header-icon-button:hover {
+    -fx-background-color: #2980b9;
+    -fx-cursor: hand;
+}
+
+.header-icon-button:selected {
+    -fx-background-color: #2c3e50;
+}
+
+.header-icon-button {
+    -fx-transition: -fx-background-color 0.2s ease;
+}
 
 /* Responsive Design */
 @media (max-width: 600px) {

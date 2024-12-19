@@ -22,6 +22,17 @@
             <Label fx:id="scoreCounter" text="0" styleClass="current-score" />
             <Label text="Mistakes: " styleClass="score-label"/>
             <Label fx:id="mistakesCounter" text="0" styleClass="mistake-counter"/>
+
+                <ToggleButton fx:id="soundToggle" styleClass="sound-toggle, header-icon-button">
+                    <graphic>
+                        <StackPane>
+                            <ImageView fx:id="soundIcon" fitHeight="24" fitWidth="24" pickOnBounds="true" preserveRatio="true">
+                                <Image url="@Images/speaker-on.png"/>
+                            </ImageView>
+                        </StackPane>
+                    </graphic>
+                </ToggleButton>
+
             <Button fx:id="resetButton" text="Reset" styleClass="action-button"/>
             <Button fx:id="menuButton" text="Menu" styleClass="action-button, menu-button"/>
             <Button fx:id="exitButton" text="Exit" styleClass="action-button, exit-button"/>

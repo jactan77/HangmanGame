@@ -1,9 +1,10 @@
 package com.example.hangmangame;
 
-import com.example.hangmangame.utils.RandomColors;
+
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class Db {
     }
 
 
-    public boolean addWord(String word, int Category) {
+    public void addWord(String word, int Category) {
 
 
         String sql = "INSERT INTO Words(Category,word) VALUES(?,?)";
@@ -70,12 +71,11 @@ public class Db {
             pstmt.setInt(1, Category);
             pstmt.setString(2, word.toLowerCase());
 
-
             pstmt.executeUpdate();
-            return true;
+
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error adding word and category: {0}", e.getMessage());
-            return false;
+
         }
     }
 
@@ -108,8 +108,8 @@ public class Db {
             }
 
     }
-    public ArrayList<String> getWords(int id){
-        ArrayList<String> words = new ArrayList<>();
+    public List<String> getWords(int id){
+        List<String> words = new ArrayList<>();
         String selectWordsSQL = "SELECT word FROM Words WHERE Category = ?";
         try(PreparedStatement pstmt = getConnection().prepareStatement(selectWordsSQL)){
             pstmt.setInt(1, id);
