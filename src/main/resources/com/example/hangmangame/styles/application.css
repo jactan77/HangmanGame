@@ -161,6 +161,17 @@
 .header-icon-button {
     -fx-transition: -fx-background-color 0.2s ease;
 }
+.game-message {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-padding: 10px;
+}
+
+#messageFlow {
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
 
 /* Responsive Design */
 @media (max-width: 600px) {

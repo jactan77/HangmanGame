@@ -11,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.TextFlow;
+
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -20,9 +22,9 @@ public class Controller {
     private final UISoundEffects soundEffects = new UISoundEffects();
 
     @FXML
-    private Pane animationPane;
+    public TextFlow categoryFlow;
     @FXML
-    private ImageView firstImage;
+    private Pane animationPane;
     @FXML
     private HBox wordDisplay;
     @FXML
@@ -60,6 +62,7 @@ public class Controller {
         resetButton.setOnAction(event -> {soundEffects.clickEffect(); Main.setSelectedScore(0);Main.loadCategoryScene();});
         exitButton.setOnAction(event -> {soundEffects.clickEffect(); Platform.exit();});
         menuButton.setOnAction(event -> {soundEffects.clickEffect(); Main.setSelectedScore(0); Main.switchToMenuScene();});
+        setCategoryFlow();
         setSoundToggle();
         getRandomWord(category);
         setupLetterButtons();
@@ -81,6 +84,10 @@ public class Controller {
                 soundEffects.clickEffect();
             }
         });
+    }
+    private void setCategoryFlow(){
+        Label text = (Label) categoryFlow.getChildren().getFirst();
+        text.setText("Category: " + db.getCategoryName(category));
     }
 
 

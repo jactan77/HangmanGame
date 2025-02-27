@@ -1,49 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.hangmangame.Controller" stylesheets="@styles/application.css">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+
+<BorderPane stylesheets="@styles/application.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.hangmangame.Controller">
 
     <top>
         <HBox alignment="CENTER" spacing="20" styleClass="header">
-            <Label text="Hangman Game" styleClass="title"/>
+            <Label styleClass="title" text="Hangman Game" />
             <Region fx:id="spacer" HBox.hgrow="ALWAYS" />
-            <Label text="Record Score: " styleClass="score-label"/>
+            <Label styleClass="score-label" text="Record Score: " />
             <HBox alignment="CENTER" spacing="5">
-                <Label fx:id="bestScoreCounter" styleClass="record-score"/>
+                <Label fx:id="bestScoreCounter" styleClass="record-score" />
                 <ImageView fitHeight="30" fitWidth="30" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@Images/fireImage.png"/>
+                    <Image url="@Images/fireImage.png" />
                 </ImageView>
             </HBox>
-            <Label text="Score: " styleClass="score-label" />
-            <Label fx:id="scoreCounter" text="0" styleClass="current-score" />
-            <Label text="Mistakes: " styleClass="score-label"/>
-            <Label fx:id="mistakesCounter" text="0" styleClass="mistake-counter"/>
+            <Label styleClass="score-label" text="Score: " />
+            <Label fx:id="scoreCounter" styleClass="current-score" text="0" />
+            <Label styleClass="score-label" text="Mistakes: " />
+            <Label fx:id="mistakesCounter" styleClass="mistake-counter" text="0" />
 
-                <ToggleButton fx:id="soundToggle" styleClass="sound-toggle, header-icon-button">
-                    <graphic>
-                        <StackPane>
-                            <ImageView fx:id="soundIcon" fitHeight="24" fitWidth="24" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@Images/speaker-on.png"/>
-                            </ImageView>
-                        </StackPane>
-                    </graphic>
-                </ToggleButton>
+            <ToggleButton fx:id="soundToggle" styleClass="sound-toggle, header-icon-button">
+                <graphic>
+                    <StackPane>
+                        <ImageView fx:id="soundIcon" fitHeight="24" fitWidth="24" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@Images/speaker-on.png" />
+                        </ImageView>
+                    </StackPane>
+                </graphic>
+            </ToggleButton>
 
-            <Button fx:id="resetButton" text="Reset" styleClass="action-button"/>
-            <Button fx:id="menuButton" text="Menu" styleClass="action-button, menu-button"/>
-            <Button fx:id="exitButton" text="Exit" styleClass="action-button, exit-button"/>
+            <Button fx:id="resetButton" styleClass="action-button" text="Reset" />
+            <Button fx:id="menuButton" styleClass="action-button, menu-button" text="Menu" />
+            <Button fx:id="exitButton" styleClass="action-button, exit-button" text="Exit" />
         </HBox>
     </top>
 
     <center>
-        <ScrollPane fx:id="gameScrollPane" fitToWidth="true" fitToHeight="true" styleClass="scroll-pane">
+        <ScrollPane fx:id="gameScrollPane" fitToHeight="true" fitToWidth="true" styleClass="scroll-pane">
             <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20;">
-                <Pane fx:id="gallowsPane" minWidth="400" minHeight="600" styleClass="gallows-pane">
-                    <Pane fx:id="animationPane" minWidth="400" minHeight="600"/>
+                <TextFlow fx:id="categoryFlow" prefHeight="50.0" prefWidth="903.0" textAlignment="CENTER">
+                    <Label styleClass="game-message" text="Category:" />
+                </TextFlow>
+                <Pane fx:id="gallowsPane" minHeight="600" minWidth="400" styleClass="gallows-pane">
+                    <Pane fx:id="animationPane" minHeight="600.0" minWidth="400" />
                 </Pane>
 
                 <HBox fx:id="wordDisplay" alignment="CENTER" spacing="10">
@@ -54,42 +67,42 @@
     </center>
 
     <bottom>
-        <FlowPane fx:id="letterGrid" hgap="8" vgap="8" alignment="CENTER" styleClass="keyboard">
-            <Button text="A" styleClass="wooden-button"/>
-            <Button text="Ą" styleClass="wooden-button"/>
-            <Button text="B" styleClass="wooden-button"/>
-            <Button text="C" styleClass="wooden-button"/>
-            <Button text="Ć" styleClass="wooden-button"/>
-            <Button text="D" styleClass="wooden-button"/>
-            <Button text="E" styleClass="wooden-button"/>
-            <Button text="Ę" styleClass="wooden-button"/>
-            <Button text="F" styleClass="wooden-button"/>
-            <Button text="G" styleClass="wooden-button"/>
-            <Button text="H" styleClass="wooden-button"/>
-            <Button text="I" styleClass="wooden-button"/>
-            <Button text="J" styleClass="wooden-button"/>
-            <Button text="K" styleClass="wooden-button"/>
-            <Button text="L" styleClass="wooden-button"/>
-            <Button text="Ł" styleClass="wooden-button"/>
-            <Button text="M" styleClass="wooden-button"/>
-            <Button text="N" styleClass="wooden-button"/>
-            <Button text="Ń" styleClass="wooden-button"/>
-            <Button text="O" styleClass="wooden-button"/>
-            <Button text="Ó" styleClass="wooden-button"/>
-            <Button text="P" styleClass="wooden-button"/>
-            <Button text="Q" styleClass="wooden-button"/>
-            <Button text="R" styleClass="wooden-button"/>
-            <Button text="S" styleClass="wooden-button"/>
-            <Button text="Ś" styleClass="wooden-button"/>
-            <Button text="T" styleClass="wooden-button"/>
-            <Button text="U" styleClass="wooden-button"/>
-            <Button text="V" styleClass="wooden-button"/>
-            <Button text="W" styleClass="wooden-button"/>
-            <Button text="X" styleClass="wooden-button"/>
-            <Button text="Y" styleClass="wooden-button"/>
-            <Button text="Z" styleClass="wooden-button"/>
-            <Button text="Ź" styleClass="wooden-button"/>
-            <Button text="Ż" styleClass="wooden-button"/>
+        <FlowPane fx:id="letterGrid" alignment="CENTER" hgap="8" styleClass="keyboard" vgap="8">
+            <Button styleClass="wooden-button" text="A" />
+            <Button styleClass="wooden-button" text="Ą" />
+            <Button styleClass="wooden-button" text="B" />
+            <Button styleClass="wooden-button" text="C" />
+            <Button styleClass="wooden-button" text="Ć" />
+            <Button styleClass="wooden-button" text="D" />
+            <Button styleClass="wooden-button" text="E" />
+            <Button styleClass="wooden-button" text="Ę" />
+            <Button styleClass="wooden-button" text="F" />
+            <Button styleClass="wooden-button" text="G" />
+            <Button styleClass="wooden-button" text="H" />
+            <Button styleClass="wooden-button" text="I" />
+            <Button styleClass="wooden-button" text="J" />
+            <Button styleClass="wooden-button" text="K" />
+            <Button styleClass="wooden-button" text="L" />
+            <Button styleClass="wooden-button" text="Ł" />
+            <Button styleClass="wooden-button" text="M" />
+            <Button styleClass="wooden-button" text="N" />
+            <Button styleClass="wooden-button" text="Ń" />
+            <Button styleClass="wooden-button" text="O" />
+            <Button styleClass="wooden-button" text="Ó" />
+            <Button styleClass="wooden-button" text="P" />
+            <Button styleClass="wooden-button" text="Q" />
+            <Button styleClass="wooden-button" text="R" />
+            <Button styleClass="wooden-button" text="S" />
+            <Button styleClass="wooden-button" text="Ś" />
+            <Button styleClass="wooden-button" text="T" />
+            <Button styleClass="wooden-button" text="U" />
+            <Button styleClass="wooden-button" text="V" />
+            <Button styleClass="wooden-button" text="W" />
+            <Button styleClass="wooden-button" text="X" />
+            <Button styleClass="wooden-button" text="Y" />
+            <Button styleClass="wooden-button" text="Z" />
+            <Button styleClass="wooden-button" text="Ź" />
+            <Button styleClass="wooden-button" text="Ż" />
         </FlowPane>
     </bottom>
 </BorderPane>
